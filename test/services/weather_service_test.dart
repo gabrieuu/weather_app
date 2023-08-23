@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather_app/models/city_model.dart';
+import 'package:weather_app/models/forecast_model.dart';
 import 'package:weather_app/services/client_request/dio_client.dart';
 import 'package:weather_app/services/weather_service.dart';
 
@@ -8,7 +9,7 @@ void main(){
 
     var weatherService = WeatherService(client: DioClient());
 
-    CityModel city = await weatherService.getWeather("Natal");
+    CityModel city = await weatherService.getCity(city: "Natal");
     expect(city.cityKey, 35658);
     expect(city.name, "Natal");
     expect(city.locality, "América do Sul");
@@ -18,5 +19,14 @@ void main(){
     expect(city.stateId, "RN");
     
 
+  });
+
+  test('Deve receber a previsao para uma cidade', () async {
+    final weatherService = WeatherService(client: DioClient());
+    CityModel cityModel = await weatherService.getCity(city: "Natal");
+
+    List<ForecastModel> forecast = await weatherService.getForecast(idCity: cityModel.cityKey);
+
+    
   });
 }

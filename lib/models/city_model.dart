@@ -1,37 +1,21 @@
 class CityModel {
-  late int _cityKey;
-  late String _name;
-  late String _locality;
-  late String _country;
-  late String _countryId;
-  late String _state;
-  late String _stateId;
+  final int cityKey;
+  final String name;
+  final String locality;
+  final String country;
+  final String countryId;
+  final String state;
+  final String stateId;
 
   CityModel({
-    required int cityKey,
-    required String name,
-    required String locality,
-    required String country,
-    required String countryId,
-    required String state,
-    required String stateId,
-  }){
-    _cityKey = cityKey;
-    _name = name;
-    _locality = locality;
-    _country = country;
-    _countryId = countryId;
-    _state = state;
-    _stateId = stateId;
-  }
-
-  int get cityKey => _cityKey;
-  String get name => _name;
-  String get locality => _locality;
-  String get country => _country;
-  String get countryId => _countryId;
-  String get state => _state;
-  String get stateId => _stateId;
+    required this.cityKey,
+    required this.name,
+    required this.locality,
+    required this.country,
+    required this.countryId,
+    required this.state,
+    required this.stateId,
+  });
 
   static CityModel fromJson(Map<String, dynamic> json) {
     return CityModel(
