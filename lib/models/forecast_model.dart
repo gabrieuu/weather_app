@@ -1,38 +1,54 @@
+import 'package:weather_app/models/weather.dart';
+
 class ForecastModel {
-  final DateTime date;
-  final int weatherIcon;
-  final String iconPhrase;
-  final bool hasPrecipitacion;
-  final bool isDayLight;
-  final Temperature temperature;
-  final int precipitationProbability;
+  final String date;
+  final String weekday;
+  final int temperatureMax;
+  final int temperatureMin;
+  final double cloudiness;
+  final double rain;
+  final int rain_probability;
+  final String windSpeed;
+  final String conditionDescription;
 
   ForecastModel({
     required this.date,
-    required this.weatherIcon,
-    required this.iconPhrase,
-    required this.hasPrecipitacion,
-    required this.isDayLight,
-    required this.temperature,
-    required this.precipitationProbability,
+    required this.weekday,
+    required this.temperatureMax,
+    required this.temperatureMin,
+    required this.cloudiness,
+    required this.rain,
+    required this.rain_probability,
+    required this.windSpeed,
+    required this.conditionDescription,
   });
 
-  static ForecastModel fromJson(Map<String, dynamic> json) {
+  static ForecastModel fromJson(Map json) {
     return ForecastModel(
-      date: DateTime.parse("2023-08-23T13:00:00-03:00"),
-      weatherIcon: json["WeatherIcon"],
-      iconPhrase: json["IconPhrase"],
-      hasPrecipitacion: json["HasPrecipitation"],
-      isDayLight: json["IsDaylight"],
-      temperature: Temperature(value: json["Temperature"]["Value"], unit: json["Temperature"]["Unit"], unitType: json["Temperature"]["UnitType"]),
-      precipitationProbability: json["PrecipitationProbability"],
+      date: json["date"],
+      weekday: json["weekday"],
+      temperatureMax: json["max"],
+      temperatureMin: json["min"],
+      cloudiness: json["cloudiness"],
+      rain: json["rain"],
+      rain_probability: json["rain_probability"],
+      windSpeed: json["wind_speedy"],
+      conditionDescription: json["description"],
     );
   }
 }
 
-class Temperature {
-  final double value;
-  final String unit;
-  final int unitType;
-  Temperature({required this.value, required this.unit, required this.unitType});
-}
+/*
+ {
+      "date": "24/08",
+      "weekday": "Qui",
+      "max": 28,
+      "min": 23,
+      "cloudiness": 44.0,
+      "rain": 0.11,
+      "rain_probability": 28,
+      "wind_speedy": "6.99 km/h",
+      "description": "Chuvas esparsas",
+      "condition": "rain"
+  },
+*/
