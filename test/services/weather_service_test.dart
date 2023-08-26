@@ -16,7 +16,7 @@ void main(){
     final client = IRequestServiceMock();
 
     final weatherService = WeatherService(client: client);
-    when(() => client.get(any())).thenAnswer((_) async => jsonDecode(jsonResponse));
+    when(() => client.get(any())).thenAnswer((e) async => jsonDecode(jsonResponse));
 
     final WeatherModel weatherCity = await weatherService.getWether(city: "Natal");
 
