@@ -1,16 +1,27 @@
-# weather_app
+# 📱 Aplicativo de tempo 
 
-A new Flutter project.
+Esse projeto mostra a previsão do tempo em uma determinada cidade, basta fazer a pesquisa pelo nome da cidade e ver os dados.
 
-## Getting Started
+# ⚙️ O que foi utilizado no projeto?:
 
-This project is a starting point for a Flutter application.
+<ul>
+  <li><b>Package GetX</b> para gerenciammento de estado e rotas</li>
+  <li><b>Testes Unitários</b> para garantir que o aplicativo faça as requisições corretas</li>
+  <li><b>Package Mocktail</b> para testar a API mesmo sem internet</li>
+  <li><b>Package Dio</b> para requisição a API</li>
+</ul>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📸 Layout
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Layout da tela![climaa](https://github.com/gabrieuu/weather_app/assets/81256082/845f35b8-d2e9-4536-81a7-e5ed335e7584)
+
+
+## ✨ Requirements
+* Qualquer sistema operacional (ie. MacOS X, Linux, Windows)
+* Qualquer IDE com o SDK do Flutter instalado (IntelliJ, Android Studio, VSCode etc)
+* Um pequeno conhecimento de Dart e Flutter
+
+
+## 🤓 Author
+**Gabriel Barbosa da silva** 
