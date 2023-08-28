@@ -1,11 +1,10 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
 import 'package:weather_app/models/weather.dart';
-import 'package:weather_app/services/client_request/dio_client.dart';
+
 import 'package:weather_app/services/interfaces/request_service.dart';
 import 'package:weather_app/services/weather_service.dart';
 
@@ -23,6 +22,10 @@ void main(){
     expect(weatherCity.city, "Natal, RN");
     expect(weatherCity.forecast.length, 10);
 
+  });
+
+  test('weather controller', () async {
+    
   });
 }
 

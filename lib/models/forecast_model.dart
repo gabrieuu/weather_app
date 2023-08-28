@@ -1,4 +1,3 @@
-import 'package:weather_app/models/weather.dart';
 
 class ForecastModel {
   final String date;
@@ -7,7 +6,7 @@ class ForecastModel {
   final int temperatureMin;
   final double cloudiness;
   final double rain;
-  final int rain_probability;
+  final int rainProbability;
   final String windSpeed;
   final String conditionDescription;
 
@@ -18,7 +17,7 @@ class ForecastModel {
     required this.temperatureMin,
     required this.cloudiness,
     required this.rain,
-    required this.rain_probability,
+    required this.rainProbability,
     required this.windSpeed,
     required this.conditionDescription,
   });
@@ -31,7 +30,7 @@ class ForecastModel {
       temperatureMin: json["min"],
       cloudiness: json["cloudiness"],
       rain: json["rain"],
-      rain_probability: json["rain_probability"],
+      rainProbability: json["rain_probability"],
       windSpeed: json["wind_speedy"],
       conditionDescription: json["description"],
     );

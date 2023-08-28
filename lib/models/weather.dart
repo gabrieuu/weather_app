@@ -42,8 +42,25 @@ class WeatherModel {
     );
   }
 
-  static List<ForecastModel> toForecast(List foreCastJson){
-    List<ForecastModel> forecastList = foreCastJson.map((map) => ForecastModel.fromJson(map)).toList();
+  static WeatherModel fillClassWeather() {
+    return WeatherModel(
+      temperature: 0,
+      date: "",
+      time: "",
+      conditionDescription: "",
+      currently: "",
+      city: "",
+      humidity: 0,
+      cloudiness: 0,
+      rain: 0,
+      windSpeed: "",
+      forecast: [],
+    );
+  }
+
+  static List<ForecastModel> toForecast(List foreCastJson) {
+    List<ForecastModel> forecastList =
+        foreCastJson.map((map) => ForecastModel.fromJson(map)).toList();
     return forecastList;
   }
 }

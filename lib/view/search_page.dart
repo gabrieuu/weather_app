@@ -22,7 +22,7 @@ class _SearchPageState extends State<SearchPage> {
             Column(
               children: [
                 Container(
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxWidth: 200,
                     maxHeight: 200
                   ),
@@ -41,24 +41,24 @@ class _SearchPageState extends State<SearchPage> {
   Widget _buttonStart() {
     return Column(
       children: [
-        SizedBox(height: 30,),
+        const SizedBox(height: 30,),
         ElevatedButton(
           onPressed: () {
             setState(() {
               onVisible = true;
             });
           },
+          style: ElevatedButton.styleFrom(
+              fixedSize: const Size.fromWidth(200),
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              backgroundColor: Colors.orange[400],
+              ),
           child: const Text(
             "Get Start",
             style: TextStyle(
                 fontSize: 20, color: darkBlue, fontWeight: FontWeight.bold),
 
           ),
-          style: ElevatedButton.styleFrom(
-              fixedSize: Size.fromWidth(200),
-              padding: EdgeInsets.symmetric(vertical: 20),
-              backgroundColor: Colors.orange[400],
-              ),
               
         ),
       ],
@@ -75,26 +75,27 @@ class _SearchPageState extends State<SearchPage> {
             decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: white, style: BorderStyle.solid)
+                  borderSide: const BorderSide(color: white, style: BorderStyle.solid)
                 ),
                 hintText: "Digite o nome de uma Cidade",
                 hintStyle: const TextStyle(color: white, fontWeight: FontWeight.w300),
                 
             ),
-            style: TextStyle(
+            style: const TextStyle(
               color: white
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, "/homepage");
+              
             },
             style: ElevatedButton.styleFrom(
-              fixedSize: Size.fromWidth(180),
+              fixedSize: const Size.fromWidth(180),
               padding: const EdgeInsets.symmetric(vertical: 20),
               backgroundColor: Colors.orange[400],
             ),
