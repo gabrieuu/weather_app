@@ -6,6 +6,7 @@ Esse projeto mostra a previsão do tempo em uma determinada cidade, basta fazer 
 # ⚙️ O que foi utilizado no projeto?:
 
 <ul>
+  <li><b>API</b> HG BRASIL</li>
   <li><b>Package GetX</b> para gerenciammento de estado e rotas</li>
   <li><b>Testes Unitários</b> para garantir que o aplicativo faça as requisições corretas</li>
   <li><b>Package Mocktail</b> para testar a API mesmo sem internet</li>
