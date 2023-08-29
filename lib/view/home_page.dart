@@ -17,12 +17,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     widthViewPort = MediaQuery.of(context).size.width;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: blue,
-        body:
-            _body(), //Obx(() => controller.isLoading.value ? load() : _body()),
-      ),
+    return Scaffold(
+
+      backgroundColor: blue,
+      body:
+          _body(), //Obx(() => controller.isLoading.value ? load() : _body()),
     );
   }
 
@@ -34,6 +33,7 @@ class _HomePageState extends State<HomePage> {
 
   _body() {
     return SingleChildScrollView(
+      padding: EdgeInsets.only(top: 20),
       child: Column(
         children: [
           Padding(
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 15),
                   child: ElevatedButton(
                     onPressed: (){
-                      Get.to(ViewForecast());
+                      Get.to(() => ViewForecast());
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: lightBlue,
