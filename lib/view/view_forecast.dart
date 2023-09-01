@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:weather_app/controller/weather_controller.dart';
 import 'package:weather_app/utils/colors.dart';
 
 class ViewForecast extends StatelessWidget {
-  const ViewForecast({super.key});
+  ViewForecast({super.key});
+
+  WeatherController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -44,34 +49,34 @@ class ViewForecast extends StatelessWidget {
                       spacing: -10,
                       direction: Axis.vertical,
                       children: [
-                        Text("Today"),
-                        Text("27°", style: TextStyle(fontSize: 50, fontWeight: FontWeight.w500),),
-                        Text("Cloudy"),
+                        Text("Hoje"),
+                        Text("${controller.weatherModel.temperature}°", style: TextStyle(fontSize: 50, fontWeight: FontWeight.w500),),
+                        Text("${controller.weatherModel.conditionDescription}"),
                       ],
                     )
                   ],
                 ),
                  Padding(
                   padding: const EdgeInsets.only(top: 30),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.water_drop_sharp,
                             color: white,
                           ),
-                          Text("70%"),
+                          Text("${controller.weatherModel.humidity}%"),
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.air,
                             color: white,
                           ),
-                          Text("7km"),
+                          Text(controller.weatherModel.windSpeed),
                         ],
                       ),
                     ],
@@ -98,19 +103,19 @@ class ViewForecast extends StatelessWidget {
                         child: Image.asset("assets/clima/29.png"),
                       ),
                       Text(
-                        '25°/27°',
+                        '${controller.weatherModel.forecast[index].temperatureMin}°/${controller.weatherModel.forecast[index].temperatureMax}°',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        "Tomorrow\n\nOct 28, 2023",
+                        "${controller.weatherModel.forecast[index].weekday}\n\n${controller.weatherModel.forecast[index].date}",
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.w500),
                       ),
                     ]));
           },
           padding: EdgeInsets.only(top: 15),
-          itemCount: 10,
+          itemCount: controller.weatherModel.forecast.length,
         ))
       ],
     );

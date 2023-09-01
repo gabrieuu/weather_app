@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weather_app/controller/weather_controller.dart';
+import 'package:weather_app/services/client_request/dio_client.dart';
+import 'package:weather_app/services/weather_service.dart';
 import 'package:weather_app/utils/colors.dart';
 import 'package:weather_app/view/view_forecast.dart';
 
@@ -11,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //final controller = Get.put(WeatherController(service: WeatherService(client: DioClient())));
+  final controller = Get.put(WeatherController(service: WeatherService(client: DioClient())));
   late double widthViewPort;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class _HomePageState extends State<HomePage> {
 
       backgroundColor: blue,
       body:
-          _body(), //Obx(() => controller.isLoading.value ? load() : _body()),
+          Obx(() => controller.isLoading.value ? load() : _body()),
     );
   }
 
@@ -30,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       child: CircularProgressIndicator(),
     );
   }
-
+  
   _body() {
     return SingleChildScrollView(
       padding: EdgeInsets.only(top: 20),
@@ -44,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.only(bottom: 20),
-                    child: const Text("Lagos Nigeria,\n27/09/2022")),
+                    child: Text("${controller.weatherModel.city},\n${controller.weatherModel.date}")),
                 SizedBox(
                     width: widthViewPort * 0.5,
                     child: Image.asset("assets/clima/29.png")),
@@ -54,30 +57,30 @@ class _HomePageState extends State<HomePage> {
                   spacing: -20,
                   children: [
                     Text(
-                      "27°",
+                      "${controller.weatherModel.temperature}°",
                       style: TextStyle(
                         fontSize: 100,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Text(
-                      "Cloudy",
-                      style: TextStyle(fontSize: 30),
+                    Text(
+                      controller.weatherModel.conditionDescription,
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.water_drop_sharp,
                             color: white,
                           ),
-                          Text("70%"),
+                          Text("${controller.weatherModel.humidity}%"),
                         ],
                       ),
                       Row(
@@ -86,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                             Icons.air,
                             color: white,
                           ),
-                          Text("7km"),
+                          Text(controller.weatherModel.windSpeed),
                         ],
                       ),
                     ],
@@ -102,7 +105,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: widthViewPort*0.1),
-                  child: Text("Today"),
+                  child: Text("Hoje"),
                 ),
                 cardsClimaHorizontal(),
               ],
@@ -112,17 +115,17 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.symmetric(horizontal: widthViewPort * 0.1),
             child: Column(
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text("Today"), Text("25°/27°")],
+                  children: [Text("Hoje"), Text("${controller.weatherModel.forecast[0].temperatureMin}°/${controller.weatherModel.forecast[0].temperatureMax}°")],
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text("Tomorrow"), Text("25°/27°")],
+                  children: [Text(controller.weatherModel.forecast[1].weekday), Text("${controller.weatherModel.forecast[1].temperatureMin}°/${controller.weatherModel.forecast[1].temperatureMax}°")],
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text("Saaturday"), Text("25°/27°")],
+                  children: [Text(controller.weatherModel.forecast[2].weekday), Text("${controller.weatherModel.forecast[2].temperatureMin}°/${controller.weatherModel.forecast[2].temperatureMax}°")],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
@@ -184,8 +187,8 @@ class _HomePageState extends State<HomePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text("11:00"),
-                  Text("25°")
+                  Text(controller.weatherModel.forecast[index].weekday),
+                  Text("${controller.weatherModel.forecast[index].temperatureMin}°")
                 ],
               )
             ],
