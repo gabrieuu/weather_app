@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:weather_app/controller/weather_controller.dart';
+import 'package:weather_app/services/client_request/dio_client.dart';
+import 'package:weather_app/services/weather_service.dart';
 import 'package:weather_app/utils/colors.dart';
+import 'package:weather_app/view/home_page.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -10,6 +15,8 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   bool onVisible = false;
+  TextEditingController city = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +79,7 @@ class _SearchPageState extends State<SearchPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
+            controller: city,
             decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -90,9 +98,9 @@ class _SearchPageState extends State<SearchPage> {
           ),
           
           ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/homepage");
-              
+            onPressed: (){
+              final controller = Get.put(WeatherController(service: WeatherService(client: DioClient()),city: city.text));
+              Get.to(() => HomePage());
             },
             style: ElevatedButton.styleFrom(
               fixedSize: const Size.fromWidth(180),

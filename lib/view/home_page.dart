@@ -6,16 +6,13 @@ import 'package:weather_app/services/weather_service.dart';
 import 'package:weather_app/utils/colors.dart';
 import 'package:weather_app/view/view_forecast.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final controller = Get.put(WeatherController(service: WeatherService(client: DioClient())));
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+  
+  WeatherController controller = Get.find();
+  
   late double widthViewPort;
+
   @override
   Widget build(BuildContext context) {
     widthViewPort = MediaQuery.of(context).size.width;
@@ -29,12 +26,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   load() {
+    print(controller.isLoading);
     return const Center(
       child: CircularProgressIndicator(),
     );
   }
-  
+
   _body() {
+    print(controller.isLoading);
     return SingleChildScrollView(
       padding: EdgeInsets.only(top: 20),
       child: Column(
@@ -44,6 +43,7 @@ class _HomePageState extends State<HomePage> {
                 horizontal: widthViewPort * 0.1, vertical: 30),
             child: Column(
               children: [
+                BackButton(color: white, onPressed: () => Get.back(),),
                 Container(
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.only(bottom: 20),
@@ -135,8 +135,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: lightBlue,
-                        fixedSize:
-                            Size.fromWidth(MediaQuery.of(context).size.width),
+                        fixedSize:Size.fromWidth(100),
                         padding: const EdgeInsets.symmetric(vertical: 20)),
                     child: const Text(
                       "Ver mais",
